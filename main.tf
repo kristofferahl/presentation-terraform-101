@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 module "my_vm" {
-  source = "./modules/vm"
+  source = "./modules/aws-ec2-static-ip"
 
   region        = "${var.region}"
   instance_name = "${terraform.workspace}-vm-kristofferahl"
