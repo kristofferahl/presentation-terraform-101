@@ -1,6 +1,5 @@
 provider "aws" {
-  region  = "${var.region}"
-  version = "~> 1.11"
+  region = "us-east-1"
 }
 
 resource "aws_instance" "example" {
@@ -8,11 +7,11 @@ resource "aws_instance" "example" {
   instance_type = "${var.instance_type}"
 
   tags {
-    Name = "${var.instance_name}"
+    Name        = "hello-terraform"
+    Environment = "production"
   }
 }
 
-resource "aws_eip" "example" {
+resource "aws_eip" "ip" {
   instance = "${aws_instance.example.id}"
-  count = "${var.elastic_ip == true ? 1 : 0}"
 }

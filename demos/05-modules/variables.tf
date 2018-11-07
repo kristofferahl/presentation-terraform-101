@@ -2,8 +2,12 @@ variable "region" {
   description = "The region to place the instance in"
 }
 
+variable "environment" {
+  description = "The environment tag applied to any resources created"
+}
+
 variable "instance_name" {
-  description = "The name of the VM"
+  description = "The name of the instance"
 }
 
 variable "instance_ami" {
@@ -11,9 +15,5 @@ variable "instance_ami" {
 }
 
 variable "instance_type" {
-  default = "t2.micro"
-}
-
-variable "elastic_ip" {
-  default = true
+  default = "t2.small"
 }

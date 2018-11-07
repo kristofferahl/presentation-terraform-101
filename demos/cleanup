@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+for d in *; do
+  if [[ -d ${d:?} ]]; then
+    echo "Cleaning up ${d:?}"
+    rm -rf "./${d:?}/.terraform" &> /dev/null || true
+    rm "./${d:?}/terraform.tfstate" &> /dev/null || true
+    rm "./${d:?}/terraform.tfstate.backup" &> /dev/null || true
+  fi
+done
