@@ -1,4 +1,4 @@
-# Remote state
+# 06 - Remote state
 
 - Backends
   - AWS S3
