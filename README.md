@@ -14,18 +14,18 @@ It's not a "new" thing! The ideas have been around a long time (10 years or so).
 
 The practice of using code to **describe**, **create**, and **manage** infrastructure so that it can be **versioned**, **tested** and **automated**.
 
-### Key practices:
-
-- Create definition files (describing desired state of infrastructure)
-- Put everything in source control
-- Prove production readiness (by automating provisioning, testing and delivery of changes)
-
 ### Goals of IaC:
 
 - Rebuild any part of the infrastructure at any time
 - Everything configured consistently
 - Repeatable process
 - Assume everything will change
+
+### Key practices:
+
+- Create definition files (describing desired state of infrastructure)
+- Put everything in source control
+- Prove production readiness (by automating provisioning, testing and delivery of changes)
 
 ## Why Infrastructure as Code
 
@@ -39,9 +39,10 @@ The practice of using code to **describe**, **create**, and **manage** infrastru
 - Time consuming ordering process
 - Long lead times (not very agile. requires planning months/years ahead)
 - Manual setup (time consuming and error prone)
-- Not correctly configured (repeat process)
+- Incorrect configuration (repeat process)
 - Poor documentation (done manually if done at all)
-- Configuration drift and snowflake instances
+- Configuration drift
+- Snowflake instances
 - Downtime for patching and updating (scary, error prone, and usually done directly in production)
 
 ### Reasons for change
@@ -53,21 +54,21 @@ The practice of using code to **describe**, **create**, and **manage** infrastru
 
 ### The Cloud
 
-- Agility: Self service, infinite scale
-- API's: Enables programmable infrastructure and automation
+- Agility (Self service)
+- Infinite scale (Or close to it)
+- API's (Enables programmable infrastructure and automation)
 - Hybrid Cloud / SaaS / FaaS (cloud 2.0)
-- More resources to manage (more problems)
 
 ### Summary
 
+A modern approach to Ops
 - Use existing tools and practices
-- A source of knowledge
-- Versioned
+- Version history and change log
 - Enables collaboration
 - Executable
 - Repeatable
+- Documentation (a source of knowledge)
 - Risk management
-- Automatic documentation and change log
 - Agility
 - Security
 - Immutability
@@ -77,33 +78,39 @@ The practice of using code to **describe**, **create**, and **manage** infrastru
 Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.   
 Terraform can manage existing and popular service providers as well as custom in-house solutions.
 
-Describes infrastructure using HCL - HashiCorp Configuration Language
+- Created by HashiCorp in 2014
+- Open Source
+- Runs on linux, mac & windows
+- Uses HCL to describe infrastructure (HCL = HashiCorp Configuration Language)
 - `*.tf` files
-
 
 ## Core concepts
 
 ### Resources
-  - Virtual machine
-  - Load balancer
-  - Private or public subnet
-  - ...
-  - Has attributes
+- Virtual machine, Load balancer, Private or Public subnet
+- Has attributes
+- Small building blocks
 
 ### Providers
-Responsible for creating and managing resources)
-
-- AWS
-- Azure
-- Google Cloud
-- Digital Ocean
-- ...
+- Groups resources in logical units
+- Cloud platforms  like Amazon Web Services, Microsoft Azure, Google Cloud Engine, Digital Ocean, Alibaba Cloud etc.
+- SaaS platforms  like Github, Bitbucket, New Relic, Mailgun etc.
+- Official and Community providers
+- Distributed as plugins
 
 ### Terraform workflow
 
-- Write
-- Plan (Creates an execution plan, by building a resource graph)
-- Apply (Creates, modifies, destroys infrastructure and outputs the state of the resource)
+- Define
+- Create a plan (Creates an execution plan, by building a resource graph)
+- Apply (Creates, changes and destroys infrastructure)
+
+## Basic commands
+
+```bash
+terraform init        # Downloads providers and initializes backends
+terraform apply       # Creates, updates and destroys resource to match the desired state
+terraform destroy     # Destroys created resources
+```
 
 ## Installing terraform
 
@@ -117,30 +124,6 @@ brew install terraform
 
 ```bash
 apm install language-terraform
-```
-
-## Basic syntax
-
-**main.tf**
-```terraform
-provider "aws" {
-  access_key = "ACCESS_KEY_HERE"
-  secret_key = "SECRET_KEY_HERE"
-  region     = "us-east-1"
-}
-
-resource "aws_instance" "example" {
-  ami           = "ami-2757f631"
-  instance_type = "t2.micro"
-}
-```
-
-## Basic commands
-
-```bash
-terraform init        # Downloads providers and initializes backends
-terraform apply       # Creates, updates and destroys resource to match the desired state
-terraform destroy     # Destroys created resources
 ```
 
 ## DEMO TIME
@@ -250,9 +233,6 @@ terraform {
   }
 }
 ```
-
-## Challenges with terraform
-- ...
 
 ## Tips and tricks
 - `terraform fmt`
